@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lightbox Image Gallery</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="gallery">
         <?php
-        $images = ['bmw.jpg', 'crown.jpg','dodge.jpg','BMW.jpg','civic.jpg'];
+        $images = ['bmw.jpg', 'crown.jpg', 'dodge.jpg', 'BMW.jpg', 'civic.jpg'];
         foreach ($images as $image) {
             echo '<div class="gallery-item">';
             echo '<a href="' . $image . '" class="lightbox">';
@@ -28,7 +30,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const lightboxLinks = document.querySelectorAll('.lightbox');
             const lightboxOverlay = document.getElementById('lightbox-overlay');
             const lightboxImage = document.getElementById('lightbox-image');
@@ -45,34 +47,34 @@
             }
 
             lightboxLinks.forEach((link, index) => {
-                link.addEventListener('click', function (event) {
+                link.addEventListener('click', function(event) {
                     event.preventDefault();
                     currentIndex = index;
                     showImage(currentIndex);
                 });
             });
 
-            closeButton.addEventListener('click', function () {
+            closeButton.addEventListener('click', function() {
                 lightboxOverlay.style.display = 'none';
             });
 
-            lightboxOverlay.addEventListener('click', function (event) {
+            lightboxOverlay.addEventListener('click', function(event) {
                 if (event.target === lightboxOverlay || event.target === lightboxImage) {
                     lightboxOverlay.style.display = 'none';
                 }
             });
 
-            prevButton.addEventListener('click', function () {
+            prevButton.addEventListener('click', function() {
                 currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
                 showImage(currentIndex);
             });
 
-            nextButton.addEventListener('click', function () {
+            nextButton.addEventListener('click', function() {
                 currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
                 showImage(currentIndex);
             });
 
-            document.addEventListener('keydown', function (event) {
+            document.addEventListener('keydown', function(event) {
                 if (lightboxOverlay.style.display === 'flex') {
                     if (event.key === 'ArrowLeft') {
                         prevButton.click();
@@ -86,4 +88,5 @@
         });
     </script>
 </body>
+
 </html>
